@@ -8,23 +8,23 @@
  */
 
 int main() {
-	char i, j; // switch this to a uint8
-	pthread_t game_threads[maxDice];
-	
-	sem_init(&mutex, 0, 1);
-	sem_init(&returnMutex, 0, 1);
-	sem_init(&setupMutex, 0, 1);
+    char i, j; // switch this to a uint8
+    pthread_t game_threads[maxDice];
 
-	for(j=0; j<NUM_ROUNDS; j++){
-		for (i = 0; i < maxDice; i++) {
-			// add params to struct then call thread with struct		
-			char* id = malloc(sizeof(char)); 
-			*id = i; 
-			// we also pass in the ID of the game so we know which one we are talking about
-			pthread_create(&game_threads[i], NULL, game, id);
-		}
-		for (i = 0; i < maxDice; i++) 
-			pthread_join(game_threads[i], NULL);
-	}
-	printf("\nAll games have completed their %d rounds!\nThanks for playing!\n", NUM_ROUNDS); 
+    sem_init(&mutex, 0, 1);
+    sem_init(&setupMutex, 0, 1);
+    sem_init(&returnMutex, 0, 1);
+    for(j = 0; j<NUM_ROUNDS; j++) {
+        for (i = 0; i < maxDice; i++) {
+            // pass in the ID of the game		
+            char* id = malloc(sizeof(char)); 
+            *id = i; 
+            pthread_create(&game_threads[i], NULL, game, id);
+        }
+        for (i = 0; i < maxDice; i++) {
+            pthread_join(game_threads[i], NULL);
+        }
+    }
+    printf("\nAll games have completed their %d rounds!\nThanks for playing!\n", NUM_ROUNDS); 
+    return 0;
 }

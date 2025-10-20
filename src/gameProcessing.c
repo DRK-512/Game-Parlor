@@ -1,8 +1,4 @@
-#include "../include/gameProcessing.h"
-
-/* 
- * This file is used to store the processing functions for this project
- */
+#include "gameProcessing.h"
 
 void gameParlor(char gameID, char state) {
 	if (state == START_GAME) {
@@ -34,21 +30,22 @@ void gameParlor(char gameID, char state) {
 
 void *game(void *param) {
 
-	// When using input to make globals, mutex's are needed
-	sem_wait(&setupMutex);   
+    // When using input to make globals, mutex's are needed
+    sem_wait(&setupMutex);
 
-	char ID = *(char*)param;
+    char ID = *(char*)param;
 
-	// Game thread only knows which round they are on, their game, and the number of dice they need to play
-	games[ID].round = rounds[ID]; 
-	games[ID].name = getName(ID); 
-	games[ID].numDice = getNumDice(ID); 
+    // Game thread only knows which round they are on, their game, and the number of dice they need to play
+    games[ID].round = rounds[ID]; 
+	  games[ID].name = getName(ID); 
+	  games[ID].numDice = getNumDice(ID); 
 
-	sem_post(&setupMutex); 
+	  sem_post(&setupMutex); 
 
-	// The game parlor does the rest of the work
-	gameParlor(ID, START_GAME); 
-	sleep(PLAY_TIME);
-	gameParlor(ID, FINISH_GAME);
-	rounds[ID]++; 
+	  // The game parlor does the rest of the work
+	  gameParlor(ID, START_GAME); 
+	  sleep(PLAY_TIME);
+	  gameParlor(ID, FINISH_GAME);
+	  rounds[ID]++; 
 }
+

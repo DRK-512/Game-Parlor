@@ -36,5 +36,6 @@ For example, group 7 plays Pictionary will play it 5 times. Pictionary needs 1 d
 
 Each representative will request the corresponding number of dice, and, after using the dice for
 the specified period of time, will return the number of dice that they borrowed.
-
+# TODO
+MAKE AN INI FOR THIS!!
 This project idea came from [here](http://web.cecs.pdx.edu/~harry/Blitz/version-1-0/OSProject/p3/proj3.pdf)
