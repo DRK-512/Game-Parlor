@@ -20,10 +20,11 @@ struct gameStruct {
     char round; 
 }; 
 
-int available; 
-char rounds[maxDice];
-struct gameStruct games[maxDice]; 
-sem_t mutex, setupMutex, returnMutex;
+// Since we reference these in processing and in main we need them to be extern
+extern int available; 
+extern char rounds[maxDice];
+extern struct gameStruct games[maxDice]; 
+extern sem_t mutex, setupMutex, returnMutex;
 
 char getNumDice(char amount); 
 char* getName(char amount); 

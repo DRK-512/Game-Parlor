@@ -1,4 +1,4 @@
-#include "gameStats.h"
+#include "gameGetters.h"
 
 int available = maxDice;
 char rounds[maxDice] = {0}; 
@@ -126,3 +126,4 @@ char* getRoundName(char amount){
             break; 
     }
 }
+

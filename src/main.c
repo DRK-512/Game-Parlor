@@ -1,5 +1,5 @@
+#include "gameGetters.h"
 #include "gameProcessing.h"
-
 /* 
  * The program is intended to simulate a game parlor with the use of threads  
  * and semaphores people go up to the game parlor to borrow a number of dice for 
@@ -28,3 +28,4 @@ int main() {
     printf("\nAll games have completed their %d rounds!\nThanks for playing!\n", NUM_ROUNDS); 
     return 0;
 }
+
